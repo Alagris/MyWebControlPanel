@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Dir view</title>
+</head>
+<body>
+	<p th:text="${path}"></p>
+
+	<div style="width: 100%;">
+		<div style="float: left; width: 50%">
+			<h3>Files</h3>
+			<div style="float: left; width: 50%">
+				<ul>
+					<li th:each="file : ${files}"><a
+						th:href="${view_prefix}+${path}+${file}" th:text="${file}"></a></li>
+				</ul>
+			</div>
+			<div style="float: right; width: 50%; " align="right">
+				<ul>
+					<li style="list-style-type: none;" th:each="fileSize : ${fileSizes}"><a th:text="${fileSize}"></a></li>
+				</ul>
+			</div>
+		</div>
+		<div style="float: right; width: 50%">
+			<h3>Directories</h3>
+			<ul>
+				<li th:each="dir : ${dirs}"><a
+					th:href="${browse_prefix}+${path}+${dir}" th:text="${dir}"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div style="clear: both"></div>
+
+
+
+	<p>
+		<a href=".">back</a>
+	</p>
+	<p>
+		<a th:href="${browse_prefix}+'/'">root</a>
+	</p>
+</body>
+</html>
